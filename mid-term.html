@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+          background-color: black;
+          color: white;
+        }
+        .d1{
+          position:absolute;
+          right:10px;
+        }
+         tr:hover {
+            background-color: rgb(9, 129, 176);
+             color: white;      
+             font-size: 18px; 
+        }
+    </style>
+</head>
+<body >
+    <div class="d1">
+        <label>Search:</label>
+        <input type="search">
+    </div><br><br>
+    <table border="2px">
+        <thead>
+            <tr>
+                <th>Title <span onclick="ascending('title')">▲</span><span onclick="descending('title')">▼</span></th>
+                <th>Isbn <span onclick="ascending('isbn')">▲</span><span onclick="descending('isbn')">▼</span></th>
+                <th>Pagecount  <span onclick="ascending('pageCount')">▲</span><span onclick="descending('pageCount')">▼</span></th>
+                <th>ThumbnailUrl  <span onclick="ascending('thumbnailUrl')">▲</span><span onclick="descending('thumbnailUrl')">▼</span></th>
+                <th>Status <span onclick="ascending('status')">▲</span><span onclick="descending('status')">▼</span></th>
+                <th>Authors  <span onclick="ascending('authors')">▲</span><span onclick="descending('authors')">▼</span></th>
+                <th>Categories  <span onclick="ascending('categories')">▲</span><span onclick="descending('categories')">▼</span></th>
+                 <th>Price <span onclick="ascending('price')">▲</span><span onclick="descending('price')">▼</span></th>
+                <th>Currency  <span onclick="ascending('currency')">▲</span><span onclick="descending('currency')">▼</span></th>
+                <th>Discount <span onclick="ascending('discount')">▲</span><span onclick="descending('discount')">▼</span></th>
+                <th>DiscountUnits <span onclick="ascending('discountUnits')">▲</span><span onclick="descending('discountUnits')">▼</span></tr>
+            </tr>
+        </thead>
+           <tbody id="booktable">
+
+        </tbody>
+    </table>
+    <script src="./info.js"></script>
+    <script >
+        function crtTable(){
+            books.forEach(function(details)
+        {
+           var ntr=document.createElement("tr")
+           var ttitle=document.createElement("td")
+             ttitle.innerText=details.title
+           var tisbn=document.createElement("td")
+             tisbn.innerText=details.isbn
+           var tpagecount=document.createElement("td")
+             tpagecount.innerText=details.pageCount
+           var tthumbnailUrl=document.createElement("td")
+             tthumbnailUrl.innerText=details.thumbnailUrl
+           var tstatus=document.createElement("td")
+              tstatus.innerText=details.status
+           var tauthors=document.createElement("td")
+             tauthors.innerText=details.authors
+           var tcategories=document.createElement("td")
+             tcategories.innerText=details.categories
+           var tprice=document.createElement("td")
+             tprice.innerText=details.price
+           var tcurrency=document.createElement("td")
+             tcurrency.innerText=details.currency
+           var tdiscount=document.createElement("td")
+             tdiscount.innerText=details.discount
+           var tdiscountUnits=document.createElement("td")
+             tdiscountUnits.innerText=details.discountUnits
+                        ntr.appendChild(ttitle);
+                        ntr.appendChild(tisbn);
+                        ntr.appendChild(tpagecount);
+                        ntr.appendChild(tthumbnailUrl);
+                        ntr.appendChild(tstatus);
+                        ntr.appendChild(tauthors);
+                        ntr.appendChild(tcategories);
+                        ntr.appendChild(tprice);
+                        ntr.appendChild(tcurrency);
+                        ntr.appendChild(tdiscount);
+                        ntr.appendChild(tdiscountUnits);
+             document.querySelector("#booktable").appendChild(ntr)
+        })
+
+ }
+        crtTable();
+        function ascending(a){
+            books.sort(function(a1,a2){
+                if(a1[a]>a2[a]){
+                    return 1}
+                else{
+                    return-1
+                }
+                })
+                document.getElementById("booktable").innerHTML=""
+                crtTable();
+        }
+
+        function descending(d){
+            books.sort(function(a1,a2){
+                if(a1[d]>a2[d]){
+                    return -1}
+                else{
+                    return 1
+                }
+                })
+                document.getElementById("booktable").innerHTML=""
+                crtTable();
+        }
+            
+            document.getElementById("booktable").innerHTML = ""   
+            crtTable();
+        
+    </script>
+</body>
+</html>
